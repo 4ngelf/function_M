@@ -6,15 +6,14 @@ is a function that allows to load modules with a relative path.
 
 # Usage
 
+First, make the function available on global scope:
 ```lua
 -- In entry point (init.lua)
 -- Just require it into global space
 M = require("function_M").get_M(require)
-
--- Now you can use it in the whole project!
 ```
 
-With this project structure:
+With this project structure as example:
 ```
 lua/
   foo/
@@ -25,8 +24,7 @@ lua/
     init.lua
 ```
 
-You can make declare a module and use require() relative to that module:
-
+You can now declare a module and use require(...) relative to that module:
 ```lua
 -- lua/foo/bar.lua
 -- At file top:
