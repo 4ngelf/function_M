@@ -29,7 +29,7 @@ You can now declare a module and use require(...) relative to that module:
 -- lua/foo/bar.lua
 -- At file top:
 local M = M(...)
--- or write the module path if you are outside the root scope of the file:
+-- Or hardcoded
 local M = M("foo.bar")
 
 -- Now you can make relative requires
