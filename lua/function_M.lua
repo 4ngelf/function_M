@@ -97,7 +97,7 @@ local function take(list, n)
   return new_list
 end
 
---- Helper function to calculate relative paths
+--- Helper function to calculate relative module paths
 ---@param path ModulePath Current module path
 ---@param subpath ModulePath Requested module path
 ---@return ModulePath
@@ -108,7 +108,7 @@ local function get_fullpath(path, subpath)
   if subpath:sub(1, 1) == "." then
     local depth = #subpath:match("%.*")
 
-    -- strip later parts by depth
+    -- resolve parents with depth
     parts = split_dot(parts[1])
     parts = take(parts, #parts - depth + 1)
 
@@ -123,7 +123,7 @@ local function get_fullpath(path, subpath)
   return table.concat(parts, ".")
 end
 
---- Make function M which uses the given require() function
+--- Makes function M which uses the given require() function
 ---
 ---@usage [[
 --- -- In program entry point (init.lua)
@@ -156,6 +156,17 @@ function M.get_M(require_fn)
       end
     }
   end
+end
+
+--- Makes function M which uses the global _G.require function
+---
+---@usage [[
+--- -- In program entry point (init.lua)
+--- M = require("fucntion_M").default_M()
+---]]
+---@return function function_M The M function
+function M.default_M()
+  return M.get_M(require)
 end
 
 return M
