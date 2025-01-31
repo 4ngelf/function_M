@@ -27,7 +27,7 @@ lua/
 You can now declare a module and use require(...) relative to that module:
 ```lua
 -- lua/foo/bar.lua
--- At file top:
+-- At file top, use the current module path as an argument:
 local M = M(...)
 -- Or hardcoded
 local M = M("foo.bar")
