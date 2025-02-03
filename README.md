@@ -49,6 +49,13 @@ M.some_number = 123
 return M
 ```
 
+> [!TIP]
+> If you don't want to export the local require function, just do:
+> ```lua
+> local require = M(...).require
+> local M = {}
+> ```
+
 # Caveats
 
 If you declare `M(...)` with a module path different from the current
