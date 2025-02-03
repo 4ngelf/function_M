@@ -7,7 +7,7 @@
 --     another.lua
 --     init.lua
 --   outside.lua
-insulate("Imaginary structure:", function()
+insulate("function M(...):", function()
   -- Load function M with custom require() that only returns calculated
   -- relative path
   M = require("function_M").get_M(function(m) return m end)
@@ -69,4 +69,13 @@ insulate("Imaginary structure:", function()
       assert.is.equal(expect, M.require("...outside"))
     end)
   end)
+end)
+
+insulate("relative_require:", function()
+  -- Replace original require with no-op function
+  local lua_require = require
+  require = function(module) return module end
+  relative_require = lua_require("function_M").get_relative_require
+
+  -- TODO: Make tests for relative require
 end)

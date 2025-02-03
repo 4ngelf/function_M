@@ -166,7 +166,36 @@ end
 ---]]
 ---@return function function_M The M function
 function M.default_M()
-  return M.get_M(require)
+  return M.get_M(_G.require)
+end
+
+--- Create a relative require function for current module based
+--- on a custom require function.
+---
+---@usage [[
+--- local function my_require(module)
+---   -- Do something with 'module'
+---   return require(module) -- Return result from original require
+--- end
+--- local require = get_relative_require_with(..., my_require)
+---]]
+---@param path ModulePath The full path of the current module
+---@param require_fn fun(path: ModulePath):any require() function to use for module loading.
+---@return function require A relative require function
+function M.get_relative_require_with(path, require_fn)
+  local _M = M.get_M(require_fn)
+  return _M(path).require
+end
+
+--- Create a relative require function for current module.
+---
+---@usage [[
+--- local require = get_relative_require(...)
+---]]
+---@param path ModulePath The full path of the current module
+---@return function require A relative require function
+function M.get_relative_require(path)
+  return M.relative_require_with(path, _G.require)
 end
 
 return M
