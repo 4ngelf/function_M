@@ -1,8 +1,7 @@
 package = "functionM"
 version = "1.0-1"
 source = {
-   url = "https://github.com/4ngelf/lua-functionM.git"
-
+   url = "git+https://github.com/4ngelf/lua-functionM"
 }
 description = {
    summary = "Relative require function.",
