@@ -166,7 +166,7 @@ end
 ---]]
 ---@return function function_M The M function
 function M.default_M()
-  return M.get_M(require)
+  return M.get_M(_G.require)
 end
 
 return M
