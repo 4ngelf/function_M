@@ -1,5 +1,5 @@
 package = "function_M"
-version = "1.0-1"
+version = "1.1-1"
 source = {
    url = "git+https://github.com/4ngelf/function_M"
 }
