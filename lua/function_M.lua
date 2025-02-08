@@ -104,6 +104,9 @@ end
 local function get_fullpath(path, subpath)
   local parts = { path }
 
+  -- convert slashes into dots
+  subpath = subpath:gsub("%.?/", ".")
+
   -- subpath starts with dot
   if subpath:sub(1, 1) == "." then
     local depth = #subpath:match("%.*")
